@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="description" content="spekka-docs">
+<meta name="generator" content="Paradox, paradox-material-theme=0.6.0, mkdocs-material=3.0.3">
+
+<meta name="lang:clipboard.copy" content="Copy to clipboard">
+<meta name="lang:clipboard.copied" content="Copied to clipboard">
+<meta name="lang:search.language" content="">
+<meta name="lang:search.pipeline.stopwords" content="true">
+<meta name="lang:search.pipeline.trimmer" content="true">
+<meta name="lang:search.result.none" content="No matching documents">
+<meta name="lang:search.result.one" content="1 matching document">
+<meta name="lang:search.result.other" content="# matching documents">
+<meta name="lang:search.tokenizer" content="">
+
+
+<meta name="description" content="spekka-docs">
+<link rel="shortcut icon" href="../assets/images/favicon.png">
+<title>Stateful Flow Usage · Spekka</title>
+<link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+<link rel="stylesheet" href="../lib/material__tabs/dist/mdc.tabs.min.css">
+<link rel="stylesheet" href="../lib/prettify/prettify.css">
+<script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+<style>
+body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}
+code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
+</style>
+<link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+<link rel="stylesheet" href="../assets/fonts/material-icons.css">
+<link rel="stylesheet" href="../assets/stylesheets/paradox-material-theme.css">
+</head>
+<body
+>
+<input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+<input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+<label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+<header class="md-header" data-md-component="header">
+<nav class="md-header-nav md-grid">
+<div class="md-flex">
+<div class="md-flex__cell md-flex__cell--shrink">
+<a href="../index.html" title="Spekka" class="md-header-nav__button md-logo">
+<i class="md-icon">stream</i>
+</a>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch">
+<div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+<span class="md-header-nav__topic">
+Spekka
+</span>
+<span class="md-header-nav__topic">
+Stateful Flow Usage
+</span>
+</div>
+</div>
+<form name="search" style="display: none">
+<input type="text" name="query">
+</form>
+<div class="md-flex__cell md-flex__cell--shrink">
+<div class="md-header-nav__source">
+<a href="https://github.com/spekka/spekka"
+title="Go to repository"
+class="md-source"
+data-md-source="github">
+<div class="md-source__icon">
+<i class="fa fa-github"></i>
+</div>
+<div class="md-source__repository">
+spekka/spekka
+</div>
+</a>
+
+</div>
+</div>
+</div>
+</nav>
+</header>
+
+<div class="md-container">
+<main class="md-main">
+<div class="md-main__inner md-grid" data-md-component="container">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav class="md-nav md-nav--primary" data-md-level="0" style="visibility: hidden">
+<label class="md-nav__title md-nav__title--site" for="drawer">
+<a href="../index.html" title="Spekka" class="md-nav__button md-logo">
+<span class="md-nav__button md-logo">
+<i class="md-icon">stream</i>
+</a>
+<a href="../index.html" title="Spekka">
+Spekka
+</a>
+</label>
+<div class="md-nav__source">
+<a href="https://github.com/spekka/spekka"
+title="Go to repository"
+class="md-source"
+data-md-source="github">
+<div class="md-source__icon">
+<i class="fa fa-github"></i>
+</div>
+<div class="md-source__repository">
+spekka/spekka
+</div>
+</a>
+
+</div>
+<ul>
+  <li><a href="../context/index.html" class="page">Spekka Context</a>
+  <ul>
+    <li><a href="../context/flow-with-extended-context.html" class="page">Flow With Extended Context</a></li>
+    <li><a href="../context/partitions.html" class="page">Partitions</a></li>
+  </ul></li>
+  <li><a href="../stateful/index.html" class="page">Spekka Stateful</a>
+  <ul>
+    <li><a href="../stateful/event-based.html" class="page">Event Based Stateful Flows</a></li>
+    <li><a href="../stateful/durable-state.html" class="page">Durable State Stateful Flow</a></li>
+    <li><a href="../stateful/usage.html" class="active page">Stateful Flow Usage</a></li>
+    <li><a href="../stateful/akkapersistence.html" class="page">Spekka Stateful Akka Persistence</a></li>
+    <li><a href="../stateful/sharding.html" class="page">Spekka Stateful Sharding</a></li>
+  </ul></li>
+</ul>
+<nav class="md-nav md-nav--secondary">
+</nav>
+
+</nav>
+<ul style="display: none">
+<li class="md-nav__item md-version" id="project.version">
+<label class="md-nav__link" for="__version">
+<i class="md-icon" title="Version">label_outline</i> 0.0.0+1-efc00ed1*
+</label>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset">
+<div class="md-content__searchable">
+<h2><a href="#stateful-flow-usage" name="stateful-flow-usage" class="anchor"><span class="anchor-link"></span></a>Stateful Flow Usage</h2>
+<p>Once we have generated <code>StatefulFlowProp</code> by combining a logic and a backend we are ready to register the flow for usage.</p>
+<p>In order to do so we first need to create a <code>StatefulFlowRegistry</code> which will handle all the low level tasks needed for coordinating the stateful flows.</p>
+<p>A registry can be created invoking <code>StatefulFlowRegistry.apply</code> specifying a timeout to use for communication with the registry itself and possibly a name for the registry (only useful if more than one registry instance is needed, which is not recommended).</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L42" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val registry = StatefulFlowRegistry(30.seconds)</code></pre>
+<p>We can now register the flows (see the section on either <a href="event-based.html">Event Based</a> or <a href="durable-state.html">Durable State</a> to see how the flow was defined):</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L87-L88" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val byDeploymentFlowBuilder = registry.registerStatefulFlowSync(&quot;byDeployment&quot;, flowProps)
+val byEntranceFlowBuilder = registry.registerStatefulFlowSync(&quot;byEntrance&quot;, flowProps)</code></pre>
+<p>At this point the <code>StatefulFlowBuilder</code> can be used to instantiate flows by specifying a particular <em>entity</em>:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L103-L121" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
+val totalByEntranceFlow = Partition
+  .treeBuilder[CounterSample, Offset]
+  .dynamicAuto(_.deploymentId)
+  .dynamicAuto(_.entranceId)
+  .build { case (entrance: EntranceId) :@: (deployment: DeploymentId) :@: KNil =&gt;
+    byEntranceFlowBuilder
+      .flowWithExtendedContext(s&quot;${deployment.id}:${entrance.id}&quot;)
+      .via(printingFlow(s&quot;deployment:${deployment.id} entrance:${entrance.id}&quot;))
+  }
+
+val totalByDeploymentFlow = Partition
+  .treeBuilder[CounterSample, Offset]
+  .dynamicAuto(_.deploymentId)
+  .build { case deployment :@: KNil =&gt;
+    byDeploymentFlowBuilder
+      .flowWithExtendedContext(s&quot;${deployment.id}&quot;)
+      .via(printingFlow(s&quot;deployment:${deployment.id} total&quot;))
+  }</code></pre>
+<p>Once a stateful stream is running we can send command to it by using its <code>StatefulFlowControl</code> object (obtained either by accessing the flow materialized value or via the <code>StatefulFlowBuilder.control</code> method):</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L158-L166" target="_blank" title="Go to snippet source">source</a><code class="language-scala">for {
+  byDeploymentC &lt;- byDeploymentFlowBuilder.control(&quot;a&quot;)
+  byEntranceC &lt;- byEntranceFlowBuilder.control(&quot;a:1&quot;)
+  aTotalF = byDeploymentC.get.commandWithResult(GetCounterCommand)
+  aE1TotalF = byEntranceC.get.commandWithResult(GetCounterCommand)
+  aTotal &lt;- aTotalF
+  aE1Total &lt;- aE1TotalF
+  _ = println(s&quot;*** deployment a total ${aTotal}; deployment a entrance 1 total ${aE1Total}&quot;)
+} yield ()</code></pre>
+</div>
+<div>
+<a href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/paradox/stateful/usage.md" title="Edit this page" class="md-source-file md-edit">
+Edit this page
+</a>
+</div>
+<div class="print-only">
+<span class="md-source-file md-version">
+0.0.0+1-efc00ed1*
+</span>
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-nav">
+<nav class="md-footer-nav__inner md-grid">
+<a href="../stateful/durable-state.html" title="Durable State Stateful Flow" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
+Previous
+</span>
+Durable State Stateful Flow
+</span>
+</div>
+</a>
+<a href="../stateful/akkapersistence.html" title="Spekka Stateful Akka Persistence" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
+Next
+</span>
+Spekka Stateful Akka Persistence
+</span>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+<div class="md-footer-copyright__highlight">
+Copyright © Andrea Zito
+</div>
+Powered by
+<a href="https://github.com/lightbend/paradox">Paradox</a>
+and
+<a href="https://jonas.github.io/paradox-material-theme/">Paradox Material Theme</a>
+
+</div>
+<div class="md-footer-social">
+<a href="https://github.com/nivox" class="md-footer-social__link fa fa-github"></a><a href="https://twitter.com/nivox" class="md-footer-social__link fa fa-twitter"></a><a href="https://linkedin.com/in/andreazito" class="md-footer-social__link fa fa-linkedin"></a>
+</div>
+
+</div>
+</div>
+</footer>
+
+</div>
+<script src="../assets/javascripts/application.583bbe55.js"></script>
+<script src="../assets/javascripts/paradox-material-theme.js"></script>
+<script>app.initialize({version:"0.17",url:{base:"../."}})</script>
+<script type="text/javascript" src="../lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="../lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function(event) {
+window.prettyPrint && prettyPrint();
+});
+</script>
+</body>
+</html>

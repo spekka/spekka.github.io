@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="description" content="spekka-docs">
+<meta name="generator" content="Paradox, paradox-material-theme=0.6.0, mkdocs-material=3.0.3">
+
+<meta name="lang:clipboard.copy" content="Copy to clipboard">
+<meta name="lang:clipboard.copied" content="Copied to clipboard">
+<meta name="lang:search.language" content="">
+<meta name="lang:search.pipeline.stopwords" content="true">
+<meta name="lang:search.pipeline.trimmer" content="true">
+<meta name="lang:search.result.none" content="No matching documents">
+<meta name="lang:search.result.one" content="1 matching document">
+<meta name="lang:search.result.other" content="# matching documents">
+<meta name="lang:search.tokenizer" content="">
+
+
+<meta name="description" content="spekka-docs">
+<link rel="shortcut icon" href="../assets/images/favicon.png">
+<title>Partitions · Spekka</title>
+<link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+<link rel="stylesheet" href="../lib/material__tabs/dist/mdc.tabs.min.css">
+<link rel="stylesheet" href="../lib/prettify/prettify.css">
+<script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+<style>
+body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}
+code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
+</style>
+<link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+<link rel="stylesheet" href="../assets/fonts/material-icons.css">
+<link rel="stylesheet" href="../assets/stylesheets/paradox-material-theme.css">
+</head>
+<body
+>
+<input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+<input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+<label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+<header class="md-header" data-md-component="header">
+<nav class="md-header-nav md-grid">
+<div class="md-flex">
+<div class="md-flex__cell md-flex__cell--shrink">
+<a href="../index.html" title="Spekka" class="md-header-nav__button md-logo">
+<i class="md-icon">stream</i>
+</a>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch">
+<div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+<span class="md-header-nav__topic">
+Spekka
+</span>
+<span class="md-header-nav__topic">
+Partitions
+</span>
+</div>
+</div>
+<form name="search" style="display: none">
+<input type="text" name="query">
+</form>
+<div class="md-flex__cell md-flex__cell--shrink">
+<div class="md-header-nav__source">
+<a href="https://github.com/spekka/spekka"
+title="Go to repository"
+class="md-source"
+data-md-source="github">
+<div class="md-source__icon">
+<i class="fa fa-github"></i>
+</div>
+<div class="md-source__repository">
+spekka/spekka
+</div>
+</a>
+
+</div>
+</div>
+</div>
+</nav>
+</header>
+
+<div class="md-container">
+<main class="md-main">
+<div class="md-main__inner md-grid" data-md-component="container">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav class="md-nav md-nav--primary" data-md-level="0" style="visibility: hidden">
+<label class="md-nav__title md-nav__title--site" for="drawer">
+<a href="../index.html" title="Spekka" class="md-nav__button md-logo">
+<span class="md-nav__button md-logo">
+<i class="md-icon">stream</i>
+</a>
+<a href="../index.html" title="Spekka">
+Spekka
+</a>
+</label>
+<div class="md-nav__source">
+<a href="https://github.com/spekka/spekka"
+title="Go to repository"
+class="md-source"
+data-md-source="github">
+<div class="md-source__icon">
+<i class="fa fa-github"></i>
+</div>
+<div class="md-source__repository">
+spekka/spekka
+</div>
+</a>
+
+</div>
+<ul>
+  <li><a href="../context/index.html" class="page">Spekka Context</a>
+  <ul>
+    <li><a href="../context/flow-with-extended-context.html" class="page">Flow With Extended Context</a></li>
+    <li><a href="../context/partitions.html" class="active page">Partitions</a></li>
+  </ul></li>
+  <li><a href="../stateful/index.html" class="page">Spekka Stateful</a>
+  <ul>
+    <li><a href="../stateful/event-based.html" class="page">Event Based Stateful Flows</a></li>
+    <li><a href="../stateful/durable-state.html" class="page">Durable State Stateful Flow</a></li>
+    <li><a href="../stateful/usage.html" class="page">Stateful Flow Usage</a></li>
+    <li><a href="../stateful/akkapersistence.html" class="page">Spekka Stateful Akka Persistence</a></li>
+    <li><a href="../stateful/sharding.html" class="page">Spekka Stateful Sharding</a></li>
+  </ul></li>
+</ul>
+<nav class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">Table of contents</label>
+<ul>
+  <li><a href="../context/partitions.html#partitions" class="header">Partitions</a>
+  <ul>
+    <li><a href="../context/partitions.html#dynamic-partitioning-with-automatic-materialization" class="header">Dynamic partitioning with automatic materialization</a></li>
+    <li><a href="../context/partitions.html#static-partitioning" class="header">Static partitioning</a></li>
+    <li><a href="../context/partitions.html#dynamic-partitioning-with-manual-materialization" class="header">Dynamic partitioning with manual materialization</a></li>
+    <li><a href="../context/partitions.html#dynamic-partitioning-completion" class="header">Dynamic partitioning completion</a></li>
+  </ul></li>
+</ul>
+</nav>
+
+</nav>
+<ul style="display: none">
+<li class="md-nav__item md-version" id="project.version">
+<label class="md-nav__link" for="__version">
+<i class="md-icon" title="Version">label_outline</i> 0.0.0+1-efc00ed1*
+</label>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">Table of contents</label>
+<ul>
+  <li><a href="../context/partitions.html#partitions" class="header">Partitions</a>
+  <ul>
+    <li><a href="../context/partitions.html#dynamic-partitioning-with-automatic-materialization" class="header">Dynamic partitioning with automatic materialization</a></li>
+    <li><a href="../context/partitions.html#static-partitioning" class="header">Static partitioning</a></li>
+    <li><a href="../context/partitions.html#dynamic-partitioning-with-manual-materialization" class="header">Dynamic partitioning with manual materialization</a></li>
+    <li><a href="../context/partitions.html#dynamic-partitioning-completion" class="header">Dynamic partitioning completion</a></li>
+  </ul></li>
+</ul>
+</nav>
+
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset">
+<div class="md-content__searchable">
+<h1><a href="#partitions" name="partitions" class="anchor"><span class="anchor-link"></span></a>Partitions</h1>
+<p><code>FlowWithExtendedContext</code> are a good abstraction to model <em>one-to-one</em> streams, however by themselves they are not enough.</p>
+<p>In the <a href="flow-with-extended-context.html">Flow With Extended Context</a> section we showed how to create a stream which computes the total number of people entered in a store. The problem as presented was so simple that a <code>FlowWithExtendedContext</code> was not actually needed. A standard <code>FlowWithContext</code> would have be more than enough.</p>
+<p>The benefit introduced by <code>FlowWithExtendedContext</code> becomes more apparent as soon as we start making the stream a little bit more complicated.</p>
+<p>For starters, let&rsquo;s say that we would like to support more than a single deployment. </p>
+<p>We could embed the logic required for handling multiple deployments in the flow itself and while this would technically work, it would require to complicate the <em>business logic</em>.</p>
+<p>An alternative approach would be to use Akka&rsquo;s <code>SubStream</code> to partition the stream by deployment and then use the same logic. This approach is definitely more in line with what we would like to achieve however it comes with some disadvantages: - we cannot access the materialization value of subflows - we have limited control in how the partitions are managed - by design Akka sub stream are subject to race-conditions around sub-flow completion and re-materialization (see <a href="https://doc.akka.io/docs/akka/current/stream/operators/Source-or-Flow/groupBy.html">Akka&rsquo;s groupBy documentation</a>) which may cause stream elements to be lost</p>
+<p>As partitioning data is such a common task, Spekka provides an extensive support for partition via the <code>Partition</code> object.</p>
+<p>In particular, the standard way to use Spekka&rsquo;s partition support should be to always start with the following code:</p>
+<pre class="prettyprint"><code class="language-scala">import PartitionTree._
+Partition.treeBuilder[Input, Context]
+</code></pre>
+<h2><a href="#dynamic-partitioning-with-automatic-materialization" name="dynamic-partitioning-with-automatic-materialization" class="anchor"><span class="anchor-link"></span></a>Dynamic partitioning with automatic materialization</h2>
+<p>The equivalent of Akka&rsquo;s <code>groupBy</code> is represented by Spekka dynamic partition with automatic materialization. This kind of partition works on a dynamic set of keys for which flows are materialized automatically at the first key occurrence.</p>
+<p>This functionality is exposed in the <code>PartitionTree</code> API via the <code>dynamicAuto</code> method which, in the simples form, takes as a parameter a function used to extract the <em>partition key</em> from each input element.</p>
+<p>Let&rsquo;s use this strategy to implement the support for multiple deployment in our people counter stream.</p>
+<p>In order to showcase one of the feature of Spekka&rsquo;s partitioning system let&rsquo;s add a communication channel for the stream via the materialization value:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala#L38-L55" target="_blank" title="Go to snippet source">source</a><code class="language-scala">def entrancesSumFlow = {
+  /*
+   * The following is not safe to do, it is used in this example just as an
+   * easy way to provide something in the materialization. Spekka offers
+   * stateful flows which solves this problem in a cleaner way.
+   */
+  val ref = new AtomicReference[Int](0)
+  FlowWithExtendedContext[CounterSample, Offset]
+    .statefulMap { () =&gt;
+      var total: Int = 0
+
+      counter =&gt;
+        total = total + counter.entrances
+        ref.set(total)
+        counter.timestamp -&gt; total
+    }
+    .mapMaterializedValue(_ =&gt; ref)
+}</code></pre>
+<p>Now let&rsquo;s use this new flow definition to implement the grouping by deployment:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala#L68-L74" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
+val totalByDeploymentFlow = Partition
+  .treeBuilder[CounterSample, Offset]
+  .dynamicAuto(_.deploymentId)
+  .build { case deployment :@: KNil =&gt;
+    entrancesSumFlow.via(printingFlow(s&quot;deployment:${deployment.id} total&quot;))
+  }</code></pre>
+<p>Here we define the various partitioning that we want to perform in our partition tree and finally we construct the overall flow invoking the <code>build</code> method. This method acts as a kind of factory which will be called when a particular partition needs to be created.</p>
+<p>The first thing we can observe is the strange syntax <code>deployment :@: KNil</code> which is used to expose the typed sequence of keys of the whole partition tree (it is like a list but it can have heterogeneous types).</p><div class="callout note "><div class="callout-title">Note</div>
+<p>The order of the keys is inverse with respect to the order in which we partitioned the stream. This means that is we first partition by <code>key1</code> of type <code>Key1</code> and then again by <code>key2</code> of type <code>Key2</code>, we will have the following keys list in the <code>build</code> method: <code>(key2: Key2) :@: (key1: Key1) :@: KNil</code>.</p></div>
+<p>If we were to inspect the type of <code>totalByDeploymentFlow</code> we would see the materialized value is: <code>PartitionControl.DynamicControl[DeploymentId,AtomicReference[Int]]</code>.</p>
+<p>This control object can be used carries along the key type of the our partitioning (i.e. <code>DeploymentId</code>) and also the type of the materialization of the single substreams (i.e. <code>AtomicReference[Int]</code>). All of this is wrapped in a control object which we can uso to:</p>
+<ul>
+  <li>get the materialization value of a particular key</li>
+  <li>request that the flow for a particular key is terminated/created</li>
+</ul>
+<p>Now that we have our partitioned flow we can materialize the stream:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala#L83-L86" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val (control, done) = samplesSource
+  .viaMat(totalByDeploymentFlow.ordered())(Keep.right)
+  .toMat(offsetCommittingSink)(Keep.both)
+  .run()</code></pre>
+<p>Notice that now that we are partitioning the data, we lost the ordering property, meaning that we might end up committing offset too early with respect to what has been actually processed.</p>
+<p><code>FlowWithExtendedContext</code> offers the <code>ordered</code> operator which seamlessly re-order the flow maintaining back-pressure (i.e. no unbounded memory usage).</p>
+<p>At this point we can query a particular partition of the stream for the current counter value by using the control object we have materialized:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala#L93-L97" target="_blank" title="Go to snippet source">source</a><code class="language-scala">(for {
+  aTotal &lt;- control.atKey(DeploymentId(&quot;a&quot;))
+} yield println(
+  s&quot;*** deployment a total ${aTotal.get()}&quot;
+)).run</code></pre>
+<p>You can find the full example here: <a href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala">PartitionAutoBaseExample.scala</a>.</p>
+<h2><a href="#static-partitioning" name="static-partitioning" class="anchor"><span class="anchor-link"></span></a>Static partitioning</h2>
+<p>It often happens that we want to partition our stream in a more static way. Akka offer the <code>GraphDSL</code> with the <code>Partition</code>, <code>Broadcast</code> and <code>Merge</code> stages which we can use to achieve this goal. Working with such a low level API however is somewhat difficult and definitely too verbose. Furthermore we are left to our own devices for what concerns context propagation.</p>
+<p>Spekka offers a seamless way to define static partition using the same <code>PartitionTree</code> API via the <code>static</code> method.</p>
+<p>As for the dynamic case the methods takes as argument a function to extract the <em>partition key</em> from each input element, but now we also have to enumerate all the possible <em>partition keys</em> in which we plan to partition the data. </p>
+<p>When a flow containing a static partition is built, Spekka will immediately materialize a subflow for each key.</p><div class="callout note "><div class="callout-title">Note</div>
+<p>The term <em>partition</em> is not actually correct for the functionality Spekka provides. When one think about partitioning data, one expect that each element is assigned to exactly one partition. Spekka supports <em>mutlicast</em>, meaning that a single element may be assigned to some or all existing partitions with proper context propagation.</p>
+<p>All the different partition types offered by the <code>PartitionTree</code> API are also available in <em>multicast</em> version by suffixing the method name with <code>Multicast</code>.</p></div>
+<p>Let&rsquo;s say that we are not content with having just the counter by deployment but we would also like to know how much the various entrances are used.</p>
+<p>Similarly to what we did before we can build our dynamic partition tree to do this:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionAutoExample.scala#L78-L85" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
+val totalByEntranceFlow = Partition
+  .treeBuilder[CounterSample, Offset]
+  .dynamicAuto(_.deploymentId)
+  .dynamicAuto(_.entranceId)
+  .build { case entrance :@: deployment :@: KNil =&gt;
+    entrancesSumFlow.via(printingFlow(s&quot;deployment:${deployment.id} entrance:${entrance.id}&quot;))
+  }</code></pre>
+<p>Now we just need to combine the 2 flows into a single flow performing both the computations:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionAutoExample.scala#L89-L113" target="_blank" title="Go to snippet source">source</a><code class="language-scala">sealed trait CombinedMaterialization
+object CombinedMaterialization {
+  case class ByEntrance(
+      control: PartitionControl.DynamicControl[
+        DeploymentId,
+        PartitionControl.DynamicControl[EntranceId, AtomicReference[Int]]
+      ])
+  case class ByDeployment(
+      control: PartitionControl.DynamicControl[DeploymentId, AtomicReference[Int]])
+}
+
+import PartitionTree._
+val combinedFlow = Partition
+  .treeBuilder[CounterSample, Offset]
+  .staticMulticast(
+    (_, keys: Set[String]) =&gt; keys,
+    Set(&quot;byEntrance&quot;, &quot;byDeployment&quot;)
+  )
+  .build {
+    case &quot;byEntrance&quot; :@: KNil =&gt;
+      totalByEntranceFlow.mapMaterializedValue(CombinedMaterialization.ByEntrance)
+    case &quot;byDeployment&quot; :@: KNil =&gt;
+      totalByDeploymentFlow.mapMaterializedValue(CombinedMaterialization.ByDeployment)
+    case _ =&gt; ???
+  }</code></pre>
+<p>Since the subtrees have different shape, we encapsulate the materialized values into a custom type <code>CombinedMaterialization</code> to preserve their specific type.</p>
+<p>Now that we have our combined flow we can materialize the stream:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionAutoExample.scala#L122-L125" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val (control, done) = samplesSource
+  .viaMat(combinedFlow.ordered())(Keep.right)
+  .toMat(offsetCommittingSink)(Keep.both)
+  .run()</code></pre>
+<p>At this point we can query the current counter value for for a particular deployment or for a specific entrance.</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionAutoExample.scala#L131-L139" target="_blank" title="Go to snippet source">source</a><code class="language-scala">(for {
+  byDeploymentC &lt;- control.atKeyNarrowed[CombinedMaterialization.ByDeployment](&quot;byDeployment&quot;)
+  aTotal &lt;- byDeploymentC.get.control.atKey(DeploymentId(&quot;a&quot;))
+  byEntranceC &lt;- control.atKeyNarrowed[CombinedMaterialization.ByEntrance](&quot;byEntrance&quot;)
+  aC &lt;- byEntranceC.get.control.atKey(DeploymentId(&quot;a&quot;))
+  aE1Total &lt;- aC.atKey(EntranceId(1))
+} yield println(
+  s&quot;*** deployment a total ${aTotal}; deployment a entrance 1 total ${aE1Total}&quot;
+)).run</code></pre>
+<p>You can find the full example here: <a href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionAutoExample.scala">PartitionAutoExample.scala</a>.</p>
+<h2><a href="#dynamic-partitioning-with-manual-materialization" name="dynamic-partitioning-with-manual-materialization" class="anchor"><span class="anchor-link"></span></a>Dynamic partitioning with manual materialization</h2>
+<p>The last kind of partition scheme provided by the <code>PartitionTree</code> API is the one of dynamic partitioning with manual materialization. In this scheme the stream is divided into dynamic partitions, however a partition is materialized only by an explicit external command. Input associated to non-materialized partitions will simply propagate the context without producing any effect.</p>
+<p>We can use this scheme to implement a new feature in our people counting system: entrance based counters will only be available to those deployment on the <em>pro</em> license.</p>
+<p>In order to do this we have toi change the definition of our <code>totalByEntranceFlow</code>:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionManualExample.scala#L74-L81" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
+val totalByEntranceFlow = Partition
+  .treeBuilder[CounterSample, Offset]
+  .dynamicManual(_.deploymentId, Set.empty)
+  .dynamicAuto(_.entranceId)
+  .build { case entrance :@: deployment :@: KNil =&gt;
+    entrancesSumFlow.via(printingFlow(s&quot;deployment:${deployment.id} entrance:${entrance.id}&quot;))
+  }</code></pre>
+<p>We define the deployment partitioning layer as <em>manual</em>, specifying that the set of deployment that should be materialized at the start of the stream is equal to the empty set (i.e. all deployment starts on the <em>basic</em> license).</p>
+<p>We then need to define a function that we can call whenever a customer buys a <em>pro</em> license for a deployment:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionManualExample.scala#L116-L121" target="_blank" title="Go to snippet source">source</a><code class="language-scala">def startCountingByEntranceFor(d: String): Future[_] = {
+  (for {
+    byEntranceC &lt;- control.atKeyNarrowed[CombinedMaterialization.ByEntrance](&quot;byEntrance&quot;)
+    _ &lt;- byEntranceC.get.control.materializeKey(DeploymentId(d))
+  } yield ()).run
+}</code></pre>
+<p>And we&rsquo;re done. At this point only the deployment for which we have invoked the <code>startCountingByEntranceFor</code> function will be computing the counters for each individual entrance, while all other deployments will only have the overall count.</p>
+<p>You can find the full example here: <a href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionManualExample.scala">PartitionManulExample.scala</a>.</p>
+<h2><a href="#dynamic-partitioning-completion" name="dynamic-partitioning-completion" class="anchor"><span class="anchor-link"></span></a>Dynamic partitioning completion</h2>
+<p>Every time a dynamic partition is materialized, a bunch of memory is allocated both by Spekka&rsquo;s substream handling internal as well as the user code (i.e. in the people counting example a separate counter is kept for each deployment and deployment entrance).</p>
+<p>In a long running process this monotonic increase in memory usage could cause the process to crash due to an out of memory error.</p>
+<p>To avoid this situation Spekka provide a way to gracefully complete dynamically materialized partitions via the concept of <code>CompletionCriteria</code>.</p>
+<p>A <code>CompletionCriteria</code> instruct Spekka when to complete a materialized substream for a partition reclaiming the allocated memory using the following criteria:</p>
+<ul>
+  <li>A predicate expression on the substream input</li>
+  <li>A predicate expression on the substream output</li>
+  <li>A timeout an the inactivity of the partition (i.e. amount of time without new inputs)</li>
+</ul>
+<p>Going back to our example we could force one of the deployment to be garbage collected the moment it stopped receiving data:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionAutoCompletionExample.scala#L69-L78" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
+val totalByDeploymentFlow = Partition
+  .treeBuilder[CounterSample, Offset]
+  .dynamicAuto(
+    _.deploymentId,
+    completionCriteria = PartitionDynamic.CompletionCriteria.onIdle(1.second)
+  )
+  .build { case deployment :@: KNil =&gt;
+    entrancesSumFlow.via(printingFlow(s&quot;deployment:${deployment.id} total&quot;))
+  }</code></pre>
+<p>You can find the full example here: <a href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/PartitionAutoCompletionExample.scala">PartitionAutoCompletionExample.scala</a>.</p>
+</div>
+<div>
+<a href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/paradox/context/partitions.md" title="Edit this page" class="md-source-file md-edit">
+Edit this page
+</a>
+</div>
+<div class="print-only">
+<span class="md-source-file md-version">
+0.0.0+1-efc00ed1*
+</span>
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-nav">
+<nav class="md-footer-nav__inner md-grid">
+<a href="../context/flow-with-extended-context.html" title="Flow With Extended Context" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
+Previous
+</span>
+Flow With Extended Context
+</span>
+</div>
+</a>
+<a href="../stateful/index.html" title="Spekka Stateful" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
+Next
+</span>
+Spekka Stateful
+</span>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+<div class="md-footer-copyright__highlight">
+Copyright © Andrea Zito
+</div>
+Powered by
+<a href="https://github.com/lightbend/paradox">Paradox</a>
+and
+<a href="https://jonas.github.io/paradox-material-theme/">Paradox Material Theme</a>
+
+</div>
+<div class="md-footer-social">
+<a href="https://github.com/nivox" class="md-footer-social__link fa fa-github"></a><a href="https://twitter.com/nivox" class="md-footer-social__link fa fa-twitter"></a><a href="https://linkedin.com/in/andreazito" class="md-footer-social__link fa fa-linkedin"></a>
+</div>
+
+</div>
+</div>
+</footer>
+
+</div>
+<script src="../assets/javascripts/application.583bbe55.js"></script>
+<script src="../assets/javascripts/paradox-material-theme.js"></script>
+<script>app.initialize({version:"0.17",url:{base:"../."}})</script>
+<script type="text/javascript" src="../lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="../lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function(event) {
+window.prettyPrint && prettyPrint();
+});
+</script>
+</body>
+</html>

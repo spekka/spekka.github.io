@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="description" content="spekka-docs">
+<meta name="generator" content="Paradox, paradox-material-theme=0.6.0, mkdocs-material=3.0.3">
+
+<meta name="lang:clipboard.copy" content="Copy to clipboard">
+<meta name="lang:clipboard.copied" content="Copied to clipboard">
+<meta name="lang:search.language" content="">
+<meta name="lang:search.pipeline.stopwords" content="true">
+<meta name="lang:search.pipeline.trimmer" content="true">
+<meta name="lang:search.result.none" content="No matching documents">
+<meta name="lang:search.result.one" content="1 matching document">
+<meta name="lang:search.result.other" content="# matching documents">
+<meta name="lang:search.tokenizer" content="">
+
+
+<meta name="description" content="spekka-docs">
+<link rel="shortcut icon" href="../assets/images/favicon.png">
+<title>Event Based Stateful Flows · Spekka</title>
+<link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+<link rel="stylesheet" href="../lib/material__tabs/dist/mdc.tabs.min.css">
+<link rel="stylesheet" href="../lib/prettify/prettify.css">
+<script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+<style>
+body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}
+code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
+</style>
+<link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+<link rel="stylesheet" href="../assets/fonts/material-icons.css">
+<link rel="stylesheet" href="../assets/stylesheets/paradox-material-theme.css">
+</head>
+<body
+>
+<input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+<input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+<label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+<header class="md-header" data-md-component="header">
+<nav class="md-header-nav md-grid">
+<div class="md-flex">
+<div class="md-flex__cell md-flex__cell--shrink">
+<a href="../index.html" title="Spekka" class="md-header-nav__button md-logo">
+<i class="md-icon">stream</i>
+</a>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch">
+<div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+<span class="md-header-nav__topic">
+Spekka
+</span>
+<span class="md-header-nav__topic">
+Event Based Stateful Flows
+</span>
+</div>
+</div>
+<form name="search" style="display: none">
+<input type="text" name="query">
+</form>
+<div class="md-flex__cell md-flex__cell--shrink">
+<div class="md-header-nav__source">
+<a href="https://github.com/spekka/spekka"
+title="Go to repository"
+class="md-source"
+data-md-source="github">
+<div class="md-source__icon">
+<i class="fa fa-github"></i>
+</div>
+<div class="md-source__repository">
+spekka/spekka
+</div>
+</a>
+
+</div>
+</div>
+</div>
+</nav>
+</header>
+
+<div class="md-container">
+<main class="md-main">
+<div class="md-main__inner md-grid" data-md-component="container">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav class="md-nav md-nav--primary" data-md-level="0" style="visibility: hidden">
+<label class="md-nav__title md-nav__title--site" for="drawer">
+<a href="../index.html" title="Spekka" class="md-nav__button md-logo">
+<span class="md-nav__button md-logo">
+<i class="md-icon">stream</i>
+</a>
+<a href="../index.html" title="Spekka">
+Spekka
+</a>
+</label>
+<div class="md-nav__source">
+<a href="https://github.com/spekka/spekka"
+title="Go to repository"
+class="md-source"
+data-md-source="github">
+<div class="md-source__icon">
+<i class="fa fa-github"></i>
+</div>
+<div class="md-source__repository">
+spekka/spekka
+</div>
+</a>
+
+</div>
+<ul>
+  <li><a href="../context/index.html" class="page">Spekka Context</a>
+  <ul>
+    <li><a href="../context/flow-with-extended-context.html" class="page">Flow With Extended Context</a></li>
+    <li><a href="../context/partitions.html" class="page">Partitions</a></li>
+  </ul></li>
+  <li><a href="../stateful/index.html" class="page">Spekka Stateful</a>
+  <ul>
+    <li><a href="../stateful/event-based.html" class="active page">Event Based Stateful Flows</a></li>
+    <li><a href="../stateful/durable-state.html" class="page">Durable State Stateful Flow</a></li>
+    <li><a href="../stateful/usage.html" class="page">Stateful Flow Usage</a></li>
+    <li><a href="../stateful/akkapersistence.html" class="page">Spekka Stateful Akka Persistence</a></li>
+    <li><a href="../stateful/sharding.html" class="page">Spekka Stateful Sharding</a></li>
+  </ul></li>
+</ul>
+<nav class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">Table of contents</label>
+<ul>
+  <li><a href="../stateful/event-based.html#event-based-stateful-flows" class="header">Event Based Stateful Flows</a>
+  <ul>
+    <li><a href="../stateful/event-based.html#logic" class="header">Logic</a></li>
+    <li><a href="../stateful/event-based.html#backend" class="header">Backend</a></li>
+    <li><a href="../stateful/event-based.html#usage" class="header">Usage</a></li>
+  </ul></li>
+</ul>
+</nav>
+
+</nav>
+<ul style="display: none">
+<li class="md-nav__item md-version" id="project.version">
+<label class="md-nav__link" for="__version">
+<i class="md-icon" title="Version">label_outline</i> 0.0.0+1-efc00ed1*
+</label>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">Table of contents</label>
+<ul>
+  <li><a href="../stateful/event-based.html#event-based-stateful-flows" class="header">Event Based Stateful Flows</a>
+  <ul>
+    <li><a href="../stateful/event-based.html#logic" class="header">Logic</a></li>
+    <li><a href="../stateful/event-based.html#backend" class="header">Backend</a></li>
+    <li><a href="../stateful/event-based.html#usage" class="header">Usage</a></li>
+  </ul></li>
+</ul>
+</nav>
+
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset">
+<div class="md-content__searchable">
+<h1><a href="#event-based-stateful-flows" name="event-based-stateful-flows" class="anchor"><span class="anchor-link"></span></a>Event Based Stateful Flows</h1>
+<p>Event based stateful flows are defined in terms of <em>events</em> generated upon receiving a stream element or command.</p>
+<p>They are well suited to model entity where the frequency of state changes is high (possibly with small deltas). Furthermore they are a natural fit for <em>event sourced</em> solutions.</p>
+<h2><a href="#logic" name="logic" class="anchor"><span class="anchor-link"></span></a>Logic</h2>
+<p>A <code>StatefulFlowLogic.EventBased[State, Ev, In, Command]</code> is a kind of logic which treats the state as an events log: inputs/commands generate events which are persisted and used to update the state.</p>
+<p>The output type of an event based stateful flow is its event type, this means that a flow using an event based logic will produce as output the events generated while processing the inputs.</p>
+<p>In order to adapt the counter example to use an event based stateful flow we need to start by defining the <em>state</em>, <em>event</em> and <em>command</em> models:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L46-L53" target="_blank" title="Go to snippet source">source</a><code class="language-scala">/** The state model */
+case class CounterState(total: Int)
+
+/** The event occurring when the counter is incremented */
+case class CounterIncrementedEvent(c: Int)
+
+/** The command used to query the flow for its current counter value */
+case class GetCounterCommand(replyTo: ActorRef[StatusReply[Int]])</code></pre>
+<p>Now that we have our models we can instantiate a logic operating on it:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L57-L75" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import StatefulFlowLogic._
+val logic = EventBased[CounterState, CounterIncrementedEvent, CounterSample, GetCounterCommand](
+  () =&gt; CounterState(0),
+  (state, sample) =&gt; {
+    println(
+      s&quot;deployment:${sample.deploymentId} entrance:${sample.entranceId} - &quot; +
+        s&quot;timestamp:${sample.timestamp} counter:${state.total + sample.entrances}&quot;
+    )
+    EventBased.ProcessingResult.withEvent(CounterIncrementedEvent(sample.entrances))
+  },
+  (state, ev) =&gt; {
+    val newTotal = state.total + ev.c
+    CounterState(newTotal)
+  },
+  (state, command) =&gt; {
+    command.replyTo ! StatusReply.success(state.total)
+    EventBased.ProcessingResult.empty
+  }
+)</code></pre>
+<p>We do that by invoking <code>StatefulFlowLogic.EventBased</code> specifying the following 4 parameters:</p>
+<ol>
+  <li><strong>initial state:</strong> the state value to use for the first instantiation of the flow (i.e. when no state can be recovered by the backend)</li>
+  <li><strong>input handler:</strong> the function used to handle stream inputs by generating events (possibly inspecting the current state)</li>
+  <li><strong>state update function:</strong> the function used to update the state by applying a single event</li>
+  <li><strong>command handler:</strong> the function used to handle commands by generating events (possibly inspecting the current state)</li>
+</ol>
+<p>The 2 handler functions for <em>inputs</em> and <em>commands</em> expects a result of type <code>StatefulFlowLogic.EventBased.ProcessingResult[Ev]</code>. This types serves as a representation of:</p>
+<ol>
+  <li>The <em>events</em> the input/command generates</li>
+  <li>The side effect we want to be performed <strong>before</strong> the state is updated with generated <em>events</em></li>
+  <li>The side effect we want to be performed <strong>after</strong> the state has been successfully updated with the generated <em>events</em></li>
+</ol>
+<p>Thanks to the native side effect support it becomes easy to write pipelines of micro-services with <em>at-least-once</em> semantic (use Kafka as a backbone, read from <code>topicUpstream</code> and emit to <code>topicDownstream</code> inside a <strong>before</strong> side effect. If the process fails while emitting, we have a guarantee that upon restart the stream will resume processing where it left off, hence repeating the side effects.)</p>
+<p>Similarly you can use <strong>after</strong> side effects to model <em>at-most-once</em> scenarios (if the system fails <strong>after</strong> the state has been modified, there is no guarantee that the logic will produce the same side effects upon restart).</p>
+<p>***note Both <strong>before</strong> and <strong>after</strong> side effects are evaluated as part of the stream. This means that the flow will not produce any output until both side effects groups have been completed successfully. Similarly if any side effect fails (i.e. <code>Future.failed</code>) the stream will be failed as well. ***</p>
+<h2><a href="#backend" name="backend" class="anchor"><span class="anchor-link"></span></a>Backend</h2>
+<p>A <code>StatefulFlowBackend.EventBased[State, Ev, _]</code> is a kind of backend compatible with event based logics with the same <em>state</em> and <em>event</em> types.</p>
+<p>Spekka Stateful ships with an in-memory implementation useful for testing and quick prototyping: <code>InMemoryStatefulFlowBackend.EventBased[State, Ev]</code>.</p>
+<p>We can create a backend for our example with the following code:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L79" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val backend = InMemoryStatefulFlowBackend.EventBased[CounterState, CounterIncrementedEvent]()</code></pre>
+<h2><a href="#usage" name="usage" class="anchor"><span class="anchor-link"></span></a>Usage</h2>
+<p>Now that we have defined both the logic and the backend, we can obtain a <code>StatefulFlowProps</code> object describing our flow:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L83" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val flowProps = logic.propsForBackend(backend)</code></pre>
+<p>We now register the flow for the 2 different usages we have planned: <em>counters by deployment</em> and <em>counters by entrances</em>:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L87-L88" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val byDeploymentFlowBuilder = registry.registerStatefulFlowSync(&quot;byDeployment&quot;, flowProps)
+val byEntranceFlowBuilder = registry.registerStatefulFlowSync(&quot;byEntrance&quot;, flowProps)</code></pre>
+<p>Now that we have registered the flows, we can use the corresponding <code>StatefulFlowBuilder</code> to instantiate a flow for a specific <em>entity</em>:</p>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L103-L121" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
+val totalByEntranceFlow = Partition
+  .treeBuilder[CounterSample, Offset]
+  .dynamicAuto(_.deploymentId)
+  .dynamicAuto(_.entranceId)
+  .build { case (entrance: EntranceId) :@: (deployment: DeploymentId) :@: KNil =&gt;
+    byEntranceFlowBuilder
+      .flowWithExtendedContext(s&quot;${deployment.id}:${entrance.id}&quot;)
+      .via(printingFlow(s&quot;deployment:${deployment.id} entrance:${entrance.id}&quot;))
+  }
+
+val totalByDeploymentFlow = Partition
+  .treeBuilder[CounterSample, Offset]
+  .dynamicAuto(_.deploymentId)
+  .build { case deployment :@: KNil =&gt;
+    byDeploymentFlowBuilder
+      .flowWithExtendedContext(s&quot;${deployment.id}&quot;)
+      .via(printingFlow(s&quot;deployment:${deployment.id} total&quot;))
+  }</code></pre>
+<p>You can find the full example here: <a href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala">StatefulFlowEventBasedExample.scala</a>.</p>
+</div>
+<div>
+<a href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/paradox/stateful/event-based.md" title="Edit this page" class="md-source-file md-edit">
+Edit this page
+</a>
+</div>
+<div class="print-only">
+<span class="md-source-file md-version">
+0.0.0+1-efc00ed1*
+</span>
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-nav">
+<nav class="md-footer-nav__inner md-grid">
+<a href="../stateful/index.html" title="Spekka Stateful" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
+Previous
+</span>
+Spekka Stateful
+</span>
+</div>
+</a>
+<a href="../stateful/durable-state.html" title="Durable State Stateful Flow" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
+Next
+</span>
+Durable State Stateful Flow
+</span>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+<div class="md-footer-copyright__highlight">
+Copyright © Andrea Zito
+</div>
+Powered by
+<a href="https://github.com/lightbend/paradox">Paradox</a>
+and
+<a href="https://jonas.github.io/paradox-material-theme/">Paradox Material Theme</a>
+
+</div>
+<div class="md-footer-social">
+<a href="https://github.com/nivox" class="md-footer-social__link fa fa-github"></a><a href="https://twitter.com/nivox" class="md-footer-social__link fa fa-twitter"></a><a href="https://linkedin.com/in/andreazito" class="md-footer-social__link fa fa-linkedin"></a>
+</div>
+
+</div>
+</div>
+</footer>
+
+</div>
+<script src="../assets/javascripts/application.583bbe55.js"></script>
+<script src="../assets/javascripts/paradox-material-theme.js"></script>
+<script>app.initialize({version:"0.17",url:{base:"../."}})</script>
+<script type="text/javascript" src="../lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="../lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function(event) {
+window.prettyPrint && prettyPrint();
+});
+</script>
+</body>
+</html>
