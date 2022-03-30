@@ -135,7 +135,7 @@ spekka/spekka
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 0.0.0+1-efc00ed1*
+<i class="md-icon" title="Version">label_outline</i> 0.1.0-rc2
 </label>
 </li>
 </ul>
@@ -149,12 +149,12 @@ spekka/spekka
 <p>Once we have generated <code>StatefulFlowProp</code> by combining a logic and a backend we are ready to register the flow for usage.</p>
 <p>In order to do so we first need to create a <code>StatefulFlowRegistry</code> which will handle all the low level tasks needed for coordinating the stateful flows.</p>
 <p>A registry can be created invoking <code>StatefulFlowRegistry.apply</code> specifying a timeout to use for communication with the registry itself and possibly a name for the registry (only useful if more than one registry instance is needed, which is not recommended).</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L42" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val registry = StatefulFlowRegistry(30.seconds)</code></pre>
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0-rc2/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L42" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val registry = StatefulFlowRegistry(30.seconds)</code></pre>
 <p>We can now register the flows (see the section on either <a href="event-based.html">Event Based</a> or <a href="durable-state.html">Durable State</a> to see how the flow was defined):</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L87-L88" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val byDeploymentFlowBuilder = registry.registerStatefulFlowSync(&quot;byDeployment&quot;, flowProps)
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0-rc2/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L87-L88" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val byDeploymentFlowBuilder = registry.registerStatefulFlowSync(&quot;byDeployment&quot;, flowProps)
 val byEntranceFlowBuilder = registry.registerStatefulFlowSync(&quot;byEntrance&quot;, flowProps)</code></pre>
 <p>At this point the <code>StatefulFlowBuilder</code> can be used to instantiate flows by specifying a particular <em>entity</em>:</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L103-L121" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0-rc2/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L103-L121" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
 val totalByEntranceFlow = Partition
   .treeBuilder[CounterSample, Offset]
   .dynamicAuto(_.deploymentId)
@@ -174,7 +174,7 @@ val totalByDeploymentFlow = Partition
       .via(printingFlow(s&quot;deployment:${deployment.id} total&quot;))
   }</code></pre>
 <p>Once a stateful stream is running we can send command to it by using its <code>StatefulFlowControl</code> object (obtained either by accessing the flow materialized value or via the <code>StatefulFlowBuilder.control</code> method):</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L158-L166" target="_blank" title="Go to snippet source">source</a><code class="language-scala">for {
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0-rc2/spekka-docs/src/main/scala/StatefulFlowEventBasedExample.scala#L158-L166" target="_blank" title="Go to snippet source">source</a><code class="language-scala">for {
   byDeploymentC &lt;- byDeploymentFlowBuilder.control(&quot;a&quot;)
   byEntranceC &lt;- byEntranceFlowBuilder.control(&quot;a:1&quot;)
   aTotalF = byDeploymentC.get.commandWithResult(GetCounterCommand)
@@ -185,13 +185,13 @@ val totalByDeploymentFlow = Partition
 } yield ()</code></pre>
 </div>
 <div>
-<a href="https://github.com/spekka/spekka/tree/master/spekka-docs/src/main/paradox/stateful/usage.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/spekka/spekka/tree/v0.1.0-rc2/spekka-docs/src/main/paradox/stateful/usage.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-0.0.0+1-efc00ed1*
+0.1.0-rc2
 </span>
 </div>
 </article>
