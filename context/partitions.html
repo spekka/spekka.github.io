@@ -33,8 +33,6 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
 <link rel="stylesheet" href="../assets/fonts/material-icons.css">
 <link rel="stylesheet" href="../assets/stylesheets/paradox-material-theme.css">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F2ZF8EPDQ8"></script>
-<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-F2ZF8EPDQ8');</script>
 </head>
 <body
 >
@@ -147,7 +145,7 @@ spekka/spekka
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 0.1.0
+<i class="md-icon" title="Version">label_outline</i> 0.1.1
 </label>
 </li>
 </ul>
@@ -193,7 +191,7 @@ Partition.treeBuilder[Input, Context]
 <p>This functionality is exposed in the <code>PartitionTree</code> API via the <code>dynamicAuto</code> method which, in the simples form, takes as a parameter a function used to extract the <em>partition key</em> from each input element.</p>
 <p>Let&rsquo;s use this strategy to implement the support for multiple deployment in our people counter stream.</p>
 <p>In order to showcase one of the feature of Spekka&rsquo;s partitioning system let&rsquo;s add a communication channel for the stream via the materialization value:</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala#L38-L55" target="_blank" title="Go to snippet source">source</a><code class="language-scala">def entrancesSumFlow = {
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala#L38-L55" target="_blank" title="Go to snippet source">source</a><code class="language-scala">def entrancesSumFlow = {
   /*
    * The following is not safe to do, it is used in this example just as an
    * easy way to provide something in the materialization. Spekka offers
@@ -212,7 +210,7 @@ Partition.treeBuilder[Input, Context]
     .mapMaterializedValue(_ =&gt; ref)
 }</code></pre>
 <p>Now let&rsquo;s use this new flow definition to implement the grouping by deployment:</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala#L68-L74" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala#L68-L74" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
 val totalByDeploymentFlow = Partition
   .treeBuilder[CounterSample, Offset]
   .dynamicAuto(_.deploymentId)
@@ -229,19 +227,19 @@ val totalByDeploymentFlow = Partition
   <li>request that the flow for a particular key is terminated/created</li>
 </ul>
 <p>Now that we have our partitioned flow we can materialize the stream:</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala#L83-L86" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val (control, done) = samplesSource
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala#L83-L86" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val (control, done) = samplesSource
   .viaMat(totalByDeploymentFlow.ordered())(Keep.right)
   .toMat(offsetCommittingSink)(Keep.both)
   .run()</code></pre>
 <p>Notice that now that we are partitioning the data, we lost the ordering property, meaning that we might end up committing offset too early with respect to what has been actually processed.</p>
 <p><code>FlowWithExtendedContext</code> offers the <code>ordered</code> operator which seamlessly re-order the flow maintaining back-pressure (i.e. no unbounded memory usage).</p>
 <p>At this point we can query a particular partition of the stream for the current counter value by using the control object we have materialized:</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala#L93-L97" target="_blank" title="Go to snippet source">source</a><code class="language-scala">(for {
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala#L93-L97" target="_blank" title="Go to snippet source">source</a><code class="language-scala">(for {
   aTotal &lt;- control.atKey(DeploymentId(&quot;a&quot;))
 } yield println(
   s&quot;*** deployment a total ${aTotal.get()}&quot;
 )).run</code></pre>
-<p>You can find the full example here: <a href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala">PartitionAutoBaseExample.scala</a>.</p>
+<p>You can find the full example here: <a href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionAutoBaseExample.scala">PartitionAutoBaseExample.scala</a>.</p>
 <h2><a href="#static-partitioning" name="static-partitioning" class="anchor"><span class="anchor-link"></span></a>Static partitioning</h2>
 <p>It often happens that we want to partition our stream in a more static way. Akka offer the <code>GraphDSL</code> with the <code>Partition</code>, <code>Broadcast</code> and <code>Merge</code> stages which we can use to achieve this goal. Working with such a low level API however is somewhat difficult and definitely too verbose. Furthermore we are left to our own devices for what concerns context propagation.</p>
 <p>Spekka offers a seamless way to define static partition using the same <code>PartitionTree</code> API via the <code>static</code> method.</p>
@@ -251,7 +249,7 @@ val totalByDeploymentFlow = Partition
 <p>All the different partition types offered by the <code>PartitionTree</code> API are also available in <em>multicast</em> version by suffixing the method name with <code>Multicast</code>.</p></div>
 <p>Let&rsquo;s say that we are not content with having just the counter by deployment but we would also like to know how much the various entrances are used.</p>
 <p>Similarly to what we did before we can build our dynamic partition tree to do this:</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionAutoExample.scala#L78-L85" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionAutoExample.scala#L78-L85" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
 val totalByEntranceFlow = Partition
   .treeBuilder[CounterSample, Offset]
   .dynamicAuto(_.deploymentId)
@@ -260,15 +258,17 @@ val totalByEntranceFlow = Partition
     entrancesSumFlow.via(printingFlow(s&quot;deployment:${deployment.id} entrance:${entrance.id}&quot;))
   }</code></pre>
 <p>Now we just need to combine the 2 flows into a single flow performing both the computations:</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionAutoExample.scala#L89-L113" target="_blank" title="Go to snippet source">source</a><code class="language-scala">sealed trait CombinedMaterialization
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionAutoExample.scala#L89-L115" target="_blank" title="Go to snippet source">source</a><code class="language-scala">sealed trait CombinedMaterialization
 object CombinedMaterialization {
   case class ByEntrance(
       control: PartitionControl.DynamicControl[
         DeploymentId,
         PartitionControl.DynamicControl[EntranceId, AtomicReference[Int]]
-      ])
+      ]
+    )
   case class ByDeployment(
-      control: PartitionControl.DynamicControl[DeploymentId, AtomicReference[Int]])
+      control: PartitionControl.DynamicControl[DeploymentId, AtomicReference[Int]]
+    )
 }
 
 import PartitionTree._
@@ -287,12 +287,12 @@ val combinedFlow = Partition
   }</code></pre>
 <p>Since the subtrees have different shape, we encapsulate the materialized values into a custom type <code>CombinedMaterialization</code> to preserve their specific type.</p>
 <p>Now that we have our combined flow we can materialize the stream:</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionAutoExample.scala#L122-L125" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val (control, done) = samplesSource
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionAutoExample.scala#L124-L127" target="_blank" title="Go to snippet source">source</a><code class="language-scala">val (control, done) = samplesSource
   .viaMat(combinedFlow.ordered())(Keep.right)
   .toMat(offsetCommittingSink)(Keep.both)
   .run()</code></pre>
 <p>At this point we can query the current counter value for for a particular deployment or for a specific entrance.</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionAutoExample.scala#L131-L139" target="_blank" title="Go to snippet source">source</a><code class="language-scala">(for {
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionAutoExample.scala#L133-L141" target="_blank" title="Go to snippet source">source</a><code class="language-scala">(for {
   byDeploymentC &lt;- control.atKeyNarrowed[CombinedMaterialization.ByDeployment](&quot;byDeployment&quot;)
   aTotal &lt;- byDeploymentC.get.control.atKey(DeploymentId(&quot;a&quot;))
   byEntranceC &lt;- control.atKeyNarrowed[CombinedMaterialization.ByEntrance](&quot;byEntrance&quot;)
@@ -301,12 +301,12 @@ val combinedFlow = Partition
 } yield println(
   s&quot;*** deployment a total ${aTotal}; deployment a entrance 1 total ${aE1Total}&quot;
 )).run</code></pre>
-<p>You can find the full example here: <a href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionAutoExample.scala">PartitionAutoExample.scala</a>.</p>
+<p>You can find the full example here: <a href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionAutoExample.scala">PartitionAutoExample.scala</a>.</p>
 <h2><a href="#dynamic-partitioning-with-manual-materialization" name="dynamic-partitioning-with-manual-materialization" class="anchor"><span class="anchor-link"></span></a>Dynamic partitioning with manual materialization</h2>
 <p>The last kind of partition scheme provided by the <code>PartitionTree</code> API is the one of dynamic partitioning with manual materialization. In this scheme the stream is divided into dynamic partitions, however a partition is materialized only by an explicit external command. Input associated to non-materialized partitions will simply propagate the context without producing any effect.</p>
 <p>We can use this scheme to implement a new feature in our people counting system: entrance based counters will only be available to those deployment on the <em>pro</em> license.</p>
 <p>In order to do this we have toi change the definition of our <code>totalByEntranceFlow</code>:</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionManualExample.scala#L74-L81" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionManualExample.scala#L74-L81" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
 val totalByEntranceFlow = Partition
   .treeBuilder[CounterSample, Offset]
   .dynamicManual(_.deploymentId, Set.empty)
@@ -316,14 +316,14 @@ val totalByEntranceFlow = Partition
   }</code></pre>
 <p>We define the deployment partitioning layer as <em>manual</em>, specifying that the set of deployment that should be materialized at the start of the stream is equal to the empty set (i.e. all deployment starts on the <em>basic</em> license).</p>
 <p>We then need to define a function that we can call whenever a customer buys a <em>pro</em> license for a deployment:</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionManualExample.scala#L116-L121" target="_blank" title="Go to snippet source">source</a><code class="language-scala">def startCountingByEntranceFor(d: String): Future[_] = {
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionManualExample.scala#L118-L123" target="_blank" title="Go to snippet source">source</a><code class="language-scala">def startCountingByEntranceFor(d: String): Future[_] = {
   (for {
     byEntranceC &lt;- control.atKeyNarrowed[CombinedMaterialization.ByEntrance](&quot;byEntrance&quot;)
     _ &lt;- byEntranceC.get.control.materializeKey(DeploymentId(d))
   } yield ()).run
 }</code></pre>
 <p>And we&rsquo;re done. At this point only the deployment for which we have invoked the <code>startCountingByEntranceFor</code> function will be computing the counters for each individual entrance, while all other deployments will only have the overall count.</p>
-<p>You can find the full example here: <a href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionManualExample.scala">PartitionManulExample.scala</a>.</p>
+<p>You can find the full example here: <a href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionManualExample.scala">PartitionManulExample.scala</a>.</p>
 <h2><a href="#dynamic-partitioning-completion" name="dynamic-partitioning-completion" class="anchor"><span class="anchor-link"></span></a>Dynamic partitioning completion</h2>
 <p>Every time a dynamic partition is materialized, a bunch of memory is allocated both by Spekka&rsquo;s substream handling internal as well as the user code (i.e. in the people counting example a separate counter is kept for each deployment and deployment entrance).</p>
 <p>In a long running process this monotonic increase in memory usage could cause the process to crash due to an out of memory error.</p>
@@ -335,7 +335,7 @@ val totalByEntranceFlow = Partition
   <li>A timeout an the inactivity of the partition (i.e. amount of time without new inputs)</li>
 </ul>
 <p>Going back to our example we could force one of the deployment to be garbage collected the moment it stopped receiving data:</p>
-<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionAutoCompletionExample.scala#L69-L78" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
+<pre class="prettyprint"><button class="snippet-button copy-snippet" title="Copy snippet to clipboard">copy</button><a class="snippet-button go-to-source" href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionAutoCompletionExample.scala#L69-L78" target="_blank" title="Go to snippet source">source</a><code class="language-scala">import PartitionTree._
 val totalByDeploymentFlow = Partition
   .treeBuilder[CounterSample, Offset]
   .dynamicAuto(
@@ -345,16 +345,16 @@ val totalByDeploymentFlow = Partition
   .build { case deployment :@: KNil =&gt;
     entrancesSumFlow.via(printingFlow(s&quot;deployment:${deployment.id} total&quot;))
   }</code></pre>
-<p>You can find the full example here: <a href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/scala/PartitionAutoCompletionExample.scala">PartitionAutoCompletionExample.scala</a>.</p>
+<p>You can find the full example here: <a href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/scala/PartitionAutoCompletionExample.scala">PartitionAutoCompletionExample.scala</a>.</p>
 </div>
 <div>
-<a href="https://github.com/spekka/spekka/tree/v0.1.0/spekka-docs/src/main/paradox/context/partitions.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/spekka/spekka/tree/v0.1.1/spekka-docs/src/main/paradox/context/partitions.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-0.1.0
+0.1.1
 </span>
 </div>
 </article>
@@ -423,6 +423,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 window.prettyPrint && prettyPrint();
 });
 </script>
+<script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","G-H13X389S63"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})});if(document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
 
 </body>
 </html>
